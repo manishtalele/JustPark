@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "573592814467",
+    "project_id": "justpark-21caa",
+    "storage_bucket": "justpark-21caa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573592814467:android:062bd367e3b962653f6cb6",
+        "android_client_info": {
+          "package_name": "com.example.justpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573592814467-9rv2d7nvrkbfagtd283agc5qcs6r96ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuSnIKGC9nLUr1VZTWMzZkbClLwM4kNZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573592814467-9rv2d7nvrkbfagtd283agc5qcs6r96ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
