@@ -5,3 +5,4 @@ Color primary2Color = const Color(0xFF3F21AA);
 Color secondaryColor = const Color.fromARGB(255, 186, 173, 231);
 Color headerBg = Colors.white;
 Color backgroundColors = Colors.white;
+Color cardBg = const Color.fromRGBO(243, 139, 117, 0.6);
