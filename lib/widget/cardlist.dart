@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:justpark/Data/userdata.dart';
 import 'package:justpark/widget/cards.dart';
 
 class CardList extends StatefulWidget {
@@ -10,8 +11,6 @@ class CardList extends StatefulWidget {
 }
 
 class _CardListState extends State<CardList> {
-  final Stream<QuerySnapshot> cardData =
-      FirebaseFirestore.instance.collection('Parking').snapshots();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -31,6 +30,7 @@ class _CardListState extends State<CardList> {
                   image: data.docs[index]["image"],
                   name: data.docs[index]["name"],
                   slot: data.docs[index]["slots"],
+                  parkingID: data.docs[index].id,
                 ));
       },
     );

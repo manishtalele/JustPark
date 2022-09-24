@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class ParkingCard extends StatefulWidget {
-  const ParkingCard({super.key});
+class ParkingCard extends StatelessWidget {
+  final int index;
+  final bool slot;
+  const ParkingCard({super.key, required this.index, required this.slot});
 
-  @override
-  State<ParkingCard> createState() => _ParkingCardState();
-}
-
-class _ParkingCardState extends State<ParkingCard> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      width: width / 2.5,
-      height: width / 2.5,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black, //color of border
-            width: 1, //width of border
-          ),
+    return Card(
+      shape: const RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
         ),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SvgPicture.asset("assets/icon/notification.svg"),
+        padding: const EdgeInsets.fromLTRB(25, 15, 25, 15),
+        child: Column(
+          children: [
+            Text(
+              "Slots $index",
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            slot
+                ? RotatedBox(
+                    quarterTurns: 2, child: Image.asset("assets/image/Car.png"))
+                : const SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }

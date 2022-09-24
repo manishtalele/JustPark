@@ -3,10 +3,14 @@ import 'package:justpark/Screen/parkingscreen.dart';
 import 'package:justpark/Theme/deftheme.dart';
 
 class Cards extends StatelessWidget {
-  final String image, name;
+  final String image, name, parkingID;
   final bool slot;
   const Cards(
-      {super.key, required this.image, required this.name, required this.slot});
+      {super.key,
+      required this.image,
+      required this.name,
+      required this.slot,
+      required this.parkingID});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,15 @@ class Cards extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 10, left: 18, right: 18),
       child: InkWell(
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ParkingScreen())),
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ParkingScreen(
+                      parkingID: parkingID,
+                    ))),
         child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           color: cardBg,
           child: Padding(
             padding: const EdgeInsets.all(13.0),
