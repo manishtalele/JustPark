@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:justpark/widget/cards.dart';
@@ -15,19 +13,24 @@ class _CardListState extends State<CardList> {
   late var data;
   List dat = [];
   bool loader = true;
-  @override
-  initState() {
+
+  dynamic getCardData() {
     DatabaseReference parkingPlaceData =
         FirebaseDatabase.instance.ref('/Parking');
-    parkingPlaceData.onValue.listen((DatabaseEvent event) {
-      data = event.snapshot.value;
-      var jsonUser = jsonEncode(data);
+    parkingPlaceData.onValue.listen((DatabaseEvent event) async {
+      final temp = event.snapshot.value;
+      // var jsonUser = jsonEncode(data);
+      data = temp;
       setState(() {
-        // dat = jsonDecode(data);
         loader = false;
       });
-      print(jsonUser[1]);
+      print(data[1]["available"]);
     });
+  }
+
+  @override
+  initState() {
+    getCardData();
     super.initState();
   }
 
@@ -38,12 +41,11 @@ class _CardListState extends State<CardList> {
         ? const Text("loading")
         : ListView.builder(
             shrinkWrap: true,
-            itemCount: 3,
-            itemBuilder: (context, index) => const Cards(
-                  image:
-                      "https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_1280.jpg",
-                  name: "Dadar",
-                  slot: true,
+            itemCount: data.length,
+            itemBuilder: (context, index) => Cards(
+                  name: data[index]["name"],
+                  image: data[index]["image"],
+                  slot: data[index]["available"],
                   parkingID: "123456",
                 ));
   }
