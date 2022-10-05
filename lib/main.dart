@@ -13,6 +13,7 @@ void main() async {
     theme: ThemeData(
         backgroundColor: backgroundColors,
         primaryColor: primaryColor,
+        primarySwatch: Colors.purple,
         secondaryHeaderColor: secondaryColor),
     home: const MyApp(),
   ));

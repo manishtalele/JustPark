@@ -45,7 +45,7 @@ class _ParkingScreenState extends State<ParkingScreen> {
               return const Text('Something Went Wrong');
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text('loading data');
+              return const Center(child: CircularProgressIndicator());
             }
             final data = snapshot.requireData;
             return Column(children: [

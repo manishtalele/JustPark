@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:justpark/Data/userdata.dart';
 import 'package:justpark/widget/cards.dart';
 
 class CardList extends StatefulWidget {
@@ -11,28 +12,39 @@ class CardList extends StatefulWidget {
 }
 
 class _CardListState extends State<CardList> {
+  late var data;
+  List dat = [];
+  bool loader = true;
+  @override
+  initState() {
+    DatabaseReference parkingPlaceData =
+        FirebaseDatabase.instance.ref('/Parking');
+    parkingPlaceData.onValue.listen((DatabaseEvent event) {
+      data = event.snapshot.value;
+      var jsonUser = jsonEncode(data);
+      setState(() {
+        // dat = jsonDecode(data);
+        loader = false;
+      });
+      print(jsonUser[1]);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: cardData,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const Text('Something Went Wrong');
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('loading data');
-        }
-        final data = snapshot.requireData;
-        return ListView.builder(
+    // print(data);
+    return loader
+        ? const Text("loading")
+        : ListView.builder(
             shrinkWrap: true,
-            itemCount: data.size,
-            itemBuilder: (context, index) => Cards(
-                  image: data.docs[index]["image"],
-                  name: data.docs[index]["name"],
-                  slot: data.docs[index]["slots"],
-                  parkingID: data.docs[index].id,
+            itemCount: 3,
+            itemBuilder: (context, index) => const Cards(
+                  image:
+                      "https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_1280.jpg",
+                  name: "Dadar",
+                  slot: true,
+                  parkingID: "123456",
                 ));
-      },
-    );
   }
 }

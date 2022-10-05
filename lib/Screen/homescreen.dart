@@ -41,12 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Hello",
-                          style: TextStyle(
-                              color: primary2Color,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            "Hello",
+                            style: TextStyle(
+                                color: primary2Color,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                         Text(
                           userName,
@@ -94,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            const Spacer(),
             Container(
                 width: width,
                 height: height / 1.43,
@@ -106,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     // mainAxisSize: MainAxisSize.max,
-                    // mainAxisAlignment: MainAxisAlignment., im back brother
+                    // mainAxisAlignment: MainAxisAlignment.,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 60, bottom: 40),
